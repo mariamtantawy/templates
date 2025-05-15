@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% load static %}
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Book Search</title> 
-        <link rel="icon" type="image/x-icon" href="Library web/Favicon.png">
-        <Link rel="stylesheet"  href="Styles/Side_Nav.css">
-        <link rel="stylesheet" href="Styles/Nav_Bar.css">
-        <link rel="stylesheet" href="Styles/footer.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="{% static 'Library web/Favicon.png' %}">
+        <link rel="stylesheet" href="{% static 'Styles/Nav_Bar.css' %}">
+        <link rel="stylesheet" href="{% static 'Styles/Admin_Add_Book.css' %}">
+        <link rel="stylesheet" href="{% static 'Styles/Side_Nav.css' %}">
+        <link rel="stylesheet" href="{% static 'Styles/Profile.css' %}">
+        <link rel="stylesheet" href="{% static 'Styles/Admin_Book_Details.css' %}">
+        <link rel="stylesheet" href="{% static 'Styles/Admin_Landing_books.css' %}">
+        <link rel="stylesheet" href="{% static 'Styles/footer.css' %}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    </head>
+ </head>
     
     <body>
     <!--Navigation bar-->
@@ -59,7 +66,7 @@
     <!-- Sidebar -->
     <nav class="side-bar">
       <div class="logo-exit">
-        <img src="Library%20web/ShelfMate-logo.png" alt="logo" class="logo">
+        <img src="{% static 'Library web/ShelfMate-logo.png' %}" alt="logo" class="logo">
         <a href="">
           <i class="streamline--delete-1-solid"></i>
         </a>
@@ -85,7 +92,11 @@
       </a>
     </nav>
   
+{% block content %}
 
+    {% endblock %}
+
+    <!-- Footer -->
 
     <!--Footer-->
     <footer>
@@ -115,6 +126,7 @@
       </div>
               
     </footer>
-
+<script src="{% static 'JavaScript/Admin_page.js' %}"></script>
+ 
     </body>
 </html>

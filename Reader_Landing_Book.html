@@ -2,15 +2,15 @@
 <html lang="en">
     
     <head>
+        {% load static %}
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Available Books</title>
-        <link rel="icon" type="image/x-icon" href="Library web/Favicon.png">
-        <Link rel="stylesheet"  href="Styles/AI_assistant.css">
-        <Link rel="stylesheet"  href="Styles/Side_Nav.css">
-        <link rel="stylesheet" href="Styles/Nav_Bar.css">
-        <link rel="stylesheet" href="Styles/Reader_Landing_book.css">
-        <link rel="stylesheet" href="Styles/footer.css">
+        <link rel="stylesheet" href="{% static 'Styles/AI_assistant.css' %}">
+        <link rel="stylesheet" href="{% static 'Styles/Side_Nav.css' %}">
+        <link rel="stylesheet" href="{% static 'Styles/Nav_Bar.css' %}">
+        <link rel="stylesheet" href="{% static 'Styles/Reader_Landing_book.css' %}">
+        <link rel="stylesheet" href="{% static 'Styles/footer.css' %}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
@@ -48,12 +48,10 @@
 
 
         <div class="book-row"></div>
-        <script src="JavaScript/Reader_page.js"></script>
-        <script src="JavaScript/Reader_Book_Search.js"></script>
-        <script src="JavaScript/Books_Data.js"></script>
-        <script src="JavaScript/Adming_Landing_books.js" >
-           
-        </script>
+      <script src="{% static 'JavaScript/Reader_page.js' %}"></script>
+        <script src="{% static 'JavaScript/Reader_Book_Search.js' %}"></script>
+        <script src="{% static 'JavaScript/Books_Data.js' %}"></script>
+        <script src="{% static 'JavaScript/Adming_Landing_books.js' %}"></script>
         
 <script>
     document.addEventListener("DOMContentLoaded", function () {
