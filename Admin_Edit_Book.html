@@ -1,69 +1,81 @@
-<!DOCTYPE html>
-<html>
-   
-    <head >
-        {% load static %}
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Edit Book</title>
-        <link rel="icon" type="image/x-icon" href="Library web/Favicon.png">
-        <link rel="stylesheet" href="{% static 'Styles/Side_Nav.css' %}">
-        <link rel="stylesheet" href="{% static 'Styles/Nav_Bar.css' %}">
-        <link rel="stylesheet" href="{% static 'Styles/Admin_Edit_Book.css' %}">
-        <link rel="stylesheet" href="{% static 'Styles/footer.css' %}">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-       </head>
-   
-    <body>
-      <div id="navbar"></div>
+{% extends "Admin_Page.html" %}
+{% load static %}
 
-      <br>
-      <br>
-        
-    <section class="Main_interface">
-        <div class="title_of_page">
-                <p>Edit Book</p>
-        </div>
-       <div class="content_screen">
+{% block title %}Admin Edit Book{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'Styles/Admin_Edit_Book.css' %}" />
+{% endblock extra_css %}
+
+{% block content %}
+<section class="Main_interface">
+    <div class="title_of_page">
+        <p>Edit Book</p>
+    </div>
+    <div class="content_screen">
+        <form method="post" enctype="multipart/form-data" action="{% url 'edit_book' book.book_id %}">
+            {% csrf_token %}
+
             <div class="Tabs">
-                <P class="input_title">Book Name</P>
-                <input class="input_text" type="text"  >
-            </div>                
-            <div class="Tabs">
-                <P class="input_title">Author</P>
-                <input class="input_text" type="text"  >
+                <p class="input_title">{{ form.book_name.label }}</p>
+                {{ form.book_name }}
+                {{ form.book_name.errors }}
             </div>
-            
+
             <div class="Tabs">
-                 <P class="input_title">Category</P>
-                <input class="input_text" type="text"  >
-            </div>    
-    
+                <p class="input_title">{{ form.author_name.label }}</p>
+                {{ form.author_name }}
+                {{ form.author_name.errors }}
+            </div>
+
             <div class="Tabs">
-                <P class="input_title">Description</P>
-                <input class="input_text" type="text"  >
+                <p class="input_title">{{ form.category.label }}</p>
+                {{ form.category }}
+                {{ form.category.errors }}
             </div>
-            <div >
-                <P class="input_title">Upload Book Image</P>
-                
-                <input type="file" class="upload-button"></input>
-                <button type="submit" class="submit"><p>Save Changes</p></button>
-                  
+
+            <div class="Tabs">
+                <p class="input_title">{{ form.description.label }}</p>
+                {{ form.description }}
+                {{ form.description.errors }}
             </div>
-       </div>
-         <div id="custom-alert" class="custom-alert hidden">
-                <div class="alert-content">
-                    <p id="alert-message"></p>
-                    <button id="close-alert">OK</button>
+
+            <div class="Tabs last">
+                <div class="input_group">
+                    <p class="input_title page">{{ form.pages.label }}</p>
+                    {{ form.pages }}
+                    {{ form.pages.errors }}
                 </div>
+                <div class="input_group">
+                    <p class="input_title page">{{ form.Stock.label }}</p>
+                    {{ form.Stock }}
+                    {{ form.Stock.errors }}
+                </div>
+            </div>
+
+            <div>
+                <p class="input_title">{{ form.image.label }}</p>
+                {{ form.image }}
+                {{ form.image.errors }}
+
+                <button type="submit" class="submit"><p>Save Changes</p></button>
+            </div>
+        </form>
+    </div>
+
+    <div id="custom-alert" class="custom-alert hidden">
+        <div class="alert-content">
+            <p id="alert-message"></p>
+            <button id="close-alert">OK</button>
         </div>
-    </section>
+    </div>
+</section>
 
-    <div id="footer"></div>
-    <script src="JavaScript/Admin_page.js"></script>
-    <script src="JavaScript/admin_Add_Book.js"></script>
+{% block extra_scripts %}
+<script>
+const booksURL = "{% url 'admin_book_details' book.book_id %}";
 
-    </body>
-    </html>
+    </script>
+<script src="{% static 'JavaScript/Admin_page.js' %}"></script>
+<script src="{% static 'JavaScript/Admin_Add_Book.js' %}"></script>
+{% endblock extra_scripts %}
+{% endblock %}

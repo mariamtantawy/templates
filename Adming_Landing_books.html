@@ -1,66 +1,50 @@
-<!DOCTYPE html>
-<html>
-   
-    <head >
-        {% load static %}
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Add Book</title>
-        <link rel="icon" type="image/x-icon" href="Library web/Favicon.png">
-        <link rel="stylesheet" href="{% static 'Styles/Side_Nav.css' %}">
-        <link rel="stylesheet" href="{% static 'Styles/Nav_Bar.css' %}">
-        <link rel="stylesheet" href="{% static 'Styles/Admin_Landing_books.css' %}">
-        <link rel="stylesheet" href="{% static 'Styles/footer.css' %}">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-       </head>
-   
-    <body>
-      <div id="navbar"></div>
-        
-        <h1>Welcome "name" to ShelfMate</h1>
-  
-        <main>
+{% extends "Admin_Page.html" %}
+{% load static %}
 
+{% block title %}Books{% endblock title %}
 
-            <div class="top-header">
-                <h2>Available Books</h2>
-                <div class="icon-row">
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'Styles/Admin_Landing_books.css' %}" />
+{% endblock extra_css %}
 
-                  <div class="search-container" id="searchContainer">
-                    <span class="material-symbols--search" id="searchIcon" onclick="expandSearch()"></span>
-                    <input type="text" placeholder="Search..." id="searchInput" />
-                  </div>
+{% block content %}
+<h1>Welcome "name" to ShelfMate</h1>
 
-                 <div class="sort-dropdown">
-                    <span class="material-symbols--sort" onclick="toggleSortMenu()" title="Sort"></span>
-                    
-                    <div class="sort-menu" id="sortMenu">
-                      <button>Date</button>
-                      <button>ID</button>
-                    </div>
-
-                  </div>
-
+<main>
+    <div class="top-header">
+            <h2>Available Books</h2>
+            <div class="sort-dropdown">
+                <span class="material-symbols--sort" title="Sort"></span>
+                <div class="sort-menu" id="sortMenu">
+                    <button>New</button>
+                    <button>Old</button>
+                    <button>Available</button>
+                    <button>Unavailable</button>
                 </div>
             </div>
+        </div>
 
-            <div class="book-row"></div>
-            <div class="book-description"></div>
-          </main>       
+    <div class="book-row">
+    {% for x in books %}
+    <div class="book-container">
+        <a href="{% url 'admin_book_details' x.book_id %}">
+            <img src="{{ x.image.url }}" alt="{{ x.book_name }}"/>
+        </a>
+        <div class="book-description">
+            <h2>
+                <a href="{% url 'admin_book_details' x.book_id %}">{{ x.book_name }}</a>
+                <span class="mynaui--book-check"></span>
+            </h2>
+            <a href="{% url 'admin_book_details' x.book_id %}"><p>{{ x.author_name }}</p></a>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
 
-          <div id="footer"></div>
 
-          <!-- The javascript file links -->
-          <script src="JavaScript/Admin_page.js"></script>
-          <script src="JavaScript/Books_Data.js"></script>
-          <script src="JavaScript/Adming_Landing_books.js"></script>
-          <script src="JavaScript/Reader_Book_Search.js"></script>
-          
-    
-    </body>
-    
-    </html>
-    
-    
+</main>
+{% endblock content %}
+
+{% block extra_scripts %}
+<script src="{% static 'JavaScript/Admin_page.js' %}"></script>
+{% endblock extra_scripts %}
